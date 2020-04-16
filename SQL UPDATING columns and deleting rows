@@ -1,0 +1,44 @@
+CREATE TABLE student(
+ student_id INT AUTO_INCREMENT,
+ name VARCHAR(20) NOT NULL,
+ major VARCHAR(20),
+ PRIMARY KEY(student_id) 
+);
+DESCRIBE student;
+SELECT * FROM student;
+INSERT INTO student(name,major) VALUES('Jack','Biology');
+INSERT INTO student(name,major) VALUES('Kate','Sociology');
+INSERT INTO student(name,major) VALUES('Claire','English');
+INSERT INTO student(name,major) VALUES('Jack','Biology');
+INSERT INTO student(name,major) VALUES('Mike','Computer Sci')
+DROP TABLE student;
+/*
+UPDATE student
+SET MAJOR='Biology';
+All majors become bio
+To avoid this can use a condition inside where
+*/
+UPDATE student
+SET major='BIO'
+WHERE major='Biology';
+
+UPDATE student 
+SET major='Bioscience'
+WHERE major='Bio' OR major='Computer Sci';
+
+#Can also set multiple columns at a time
+UPDATE student 
+SET name='Tommy', major='undecided'#Have to use comma here cannot write AND
+WHERE student_id=2;
+
+
+
+DELETE FROM student;#THis will delete all the rows
+
+DELETE FROM student
+WHERE student_id=4;#Deleting specific row
+
+
+DELETE FROM student
+WHERE name='TOM'AND major='undecided';
+#Here have to use and
