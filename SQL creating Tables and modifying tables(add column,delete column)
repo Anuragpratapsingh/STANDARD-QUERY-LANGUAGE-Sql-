@@ -1,0 +1,15 @@
+CREATE TABLE student(
+  student_id INT PRIMARY KEY,
+  name VARCHAR(20),
+  major VARCHAR(20),
+  # PRIMARY KEY(student_id), other way of making a primary key
+);
+DESCRIBE student;#To describe the table what all attributes it has and 
+#and each column has which type of value stored
+DROP TABLE student;#DELETE THE table
+
+#Modifying the table
+ALTER TABLE student ADD gpa DECIMAL(3,2);
+#THis will add an extra column gpa which contains 
+#decimal type values in our table
+ALTER TABLE student DROP COLUMN gpa;#This will delete the gpa column
