@@ -1,0 +1,69 @@
+SELECT *
+FROM student;
+#Select all the Column from student
+
+SELECT name,major
+FROM student;
+
+SELECT student.name,student.major#Specified that it is from students table
+FROM student;
+
+SELECT student.name,student.major
+FROM student
+ORDER BY name;#So get sorted in alphabetical order based on name and by default in ascending order
+
+SELECT student.name,student.major
+FROM student
+ORDER BY name DESC;#iN DESCENDING ORDER
+
+
+SELECT *
+FROM student
+ORDER BY student_id DESC;
+
+
+SELECT *
+FROM student
+ORDER BY major,student_id;#Order them by major first and if any has same major
+#then order it by student id
+
+SELECT *
+FROM student
+ORDER BY major,student_id DESC;#Now student id in descending order
+
+
+SELECT *
+FROM student
+ORDER BY student_id DESC
+LIMIT 2;#So limits and gives only 2 rows
+
+
+SELECT *
+FROM student
+WHERE major='Biology';
+
+SELECT name,major
+FROM student
+WHERE major='Biology';#Get only name and major of students whose major is Biology
+
+
+SELECT name,major
+FROM student
+WHERE major<>'Biology' OR name='Kate';
+
+
+#can also use in where <>,=,>=,<=,AND, OR
+
+SELECT name,major
+FROM student
+WHERE student_id<=3 AND name<>'Jack';
+
+SELECT *
+FROM student
+WHERE name IN('Claire','Kate','Mike');
+#Select whose name is in one of these(claire,kate or mike)
+
+SELECT *
+FROM student
+WHERE name IN('Claire','Kate','Mike') AND student_id>=3;
+#Can also combine
