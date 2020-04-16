@@ -1,7 +1,7 @@
 CREATE TABLE student(
   student_id INT PRIMARY KEY,
   name VARCHAR(20),
-  major VARCHAR(20),
+  major VARCHAR(20)
   # PRIMARY KEY(student_id), other way of making a primary key
 );
 INSERT INTO student VALUES(1,'Jack','Biology');
@@ -21,14 +21,14 @@ INSERT INTO student VALUES(2,'Jason');
 CREATE TABLE student(
   student_id INT PRIMARY KEY,
   name VARCHAR(20) NOT NULL,
-  major VARCHAR(20) UNIQUE,
+  major VARCHAR(20) UNIQUE
   #Unique so now any other row cannot have the same value for the majors
 );
 #So now name cannot insert NULL for a name
 CREATE TABLE student(
   student_id INT PRIMARY KEY,
   name VARCHAR(20) NOT NULL,
-  major VARCHAR(20) DEFAULT 'undecided';
+  major VARCHAR(20) DEFAULT 'undecided'
   #If someone does not enter major now by default it will be unddecided
 );
 
