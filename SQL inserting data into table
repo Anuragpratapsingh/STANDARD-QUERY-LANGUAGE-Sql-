@@ -1,0 +1,44 @@
+CREATE TABLE student(
+  student_id INT PRIMARY KEY,
+  name VARCHAR(20),
+  major VARCHAR(20),
+  # PRIMARY KEY(student_id), other way of making a primary key
+);
+INSERT INTO student VALUES(1,'Jack','Biology');
+#Insertion will occur in the same order as the table has beeen created
+SELECT * FROM student;
+#Will give all information inside the students table show all the data stored
+
+#Let say i want to include an entry which have eg majors missing or no value present in majors
+INSERT INTO student(student_id,name) VALUES(2,'Claire');
+#So now in majors NULL will come
+
+INSERT INTO student VALUES(2,'Jason');
+#This will not work ---->>
+#Cannot insert duplicate primary key as 2 already exist
+
+#If want something to have a value always in our table just write NOT NULL after that while creating the table
+CREATE TABLE student(
+  student_id INT PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
+  major VARCHAR(20) UNIQUE,
+  #Unique so now any other row cannot have the same value for the majors
+);
+#So now name cannot insert NULL for a name
+CREATE TABLE student(
+  student_id INT PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
+  major VARCHAR(20) DEFAULT 'undecided';
+  #If someone does not enter major now by default it will be unddecided
+);
+
+CREATE TABLE student(
+  student_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(20),
+  major VARCHAR(20),
+);
+#Can auto increment the primary key so even if i don't specify it will get incremented automatically
+
+INSERT INTO student(name,major) VALUES('Jack','Biology');
+INSERT INTO student(name,major) VALUES('Jason','Sociology'); 
+#Now even if i have not specified primary key Jack will get student_id 1 and for jason auto incremented and will get 2 automatically
