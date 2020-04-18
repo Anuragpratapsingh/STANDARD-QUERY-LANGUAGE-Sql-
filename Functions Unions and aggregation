@@ -1,0 +1,122 @@
+#Functions
+
+Select * FROM works_with;
+Describe employee;
+#Find the number of employees
+#As the emp_id is the primary key so it won't be repeated so can get the count of employees from that
+SELECT COUNT(emp_id)
+FROM employee;
+
+#Find the number of employees having superviser so this will return super_id that are having some values
+SELECT COUNT(super_id)
+FROM employee;
+
+
+#Find the number of femake employees born after 1970
+
+SELECT COUNT(emp_id)
+FROM employee
+WHERE sex='F'AND birth_day>'1970-01-01';
+
+#Find the average of all employees salaries
+SELECT AVG(salary)
+FROM employee;
+
+
+SELECT AVG(salary)
+FROM employee
+WHERE sex='M';
+
+
+#Find the sum of all employees salaries
+SELECT SUM(salary)
+FROM employee;
+
+
+
+#Aggregation
+
+#Find the number of males and females are there SELECT COUNT(sex),sex Jo phirse sex likha that will get printed after the count
+SELECT COUNT(sex),sex
+FROM employee
+GROUP BY sex;
+
+#Find the total sales of each salesman this is in workswith
+SELECT SUM(total_sales),emp_id
+FROM works_with
+GROUP BY emp_id;
+
+
+#Find the total money spent by each client on the branch
+SELECT SUM(total_sales),client_id
+FROM works_with
+GROUP BY client_id;
+
+
+#Using Wildcards
+#See notes
+#getting data that matches a specific pattern
+# %-Any number of characters
+# _-1 character
+
+
+#Find any branch_suppliers who are in the label business
+SELECT *
+FROM branch_supplier
+WHERE supplier_name LIKE '%Label%';
+#Any number of characters Label Any number of characters
+
+#Find any clients who are an LLC
+SELECT *
+FROM client
+WHERE client_name LIKE '%LLC';
+#THis is like % matlab LLC ke pehle any number of characters and should end at LLC
+
+
+#Find the employees born in october
+SELECT *
+FROM employee
+WHERE birth_day LIKE '____-10%';
+As we know the syntax of the dates and _ means 1 character.
+
+
+#Unions-To combine the results of multiple select statements in one
+
+#Find a list of employee and branch name
+SELECT first_name 
+FROM employee
+UNION
+SELECT branch_name
+FROM branch;
+
+#Can also name this something else and can do more unions
+SELECT first_name AS Company_name
+FROM employee
+UNION
+SELECT branch_name
+FROM branch
+UNION
+SELECT supplier_name
+FROM branch_supplier;
+
+#Both client and branch supplier have branch_id column
+SELECT client_name,branch_id
+FROM client
+UNION
+SELECT branch_name,branch_id
+FROM branch;
+
+#Or making it more readable
+SELECT client_name,client.branch_id
+FROM client
+UNION
+SELECT branch_name,branch.branch_id
+FROM branch;
+
+
+#Find a list of all money spent or earned by the company
+SELECT salary
+FROM employee
+UNION
+SELECT total_sales
+FROM works_with;
