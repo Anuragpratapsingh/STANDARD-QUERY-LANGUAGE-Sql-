@@ -1,0 +1,47 @@
+#More basic queries in company database
+
+#1.Finding all employees
+SELECT *
+FROM employee;
+
+#2.Finding all employees ordered by salaries
+
+SELECT *
+FROM employee
+ORDER BY salary DESC; 
+
+#3.Finding all employees ordered by SEX and name
+SELECT *
+FROM employee
+ORDER BY sex,first_name,last_name;
+
+
+#3.Finding the first 5 employees in the table
+SELECT *
+FROM employee
+LIMIT 5;
+
+#3.Finding the first AND last names of all employees in the table
+SELECT employee.first_name,employee.last_name
+FROM employee;
+
+#OR
+
+SELECT first_name,last_name
+FROM employee;
+
+##3.Finding the forenames and surnames of all employees in the table
+SELECT first_name AS fore_name,last_name AS sur_name
+FROM employee;
+
+
+#Find out all the different genders
+SELECT DISTINCT sex
+FROM employee;
+
+#Distinct to find out different values stored in a particular column
+SELECT DISTINCT branch_id
+FROM employee;
+
+
+
