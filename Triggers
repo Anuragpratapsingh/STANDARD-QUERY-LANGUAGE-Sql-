@@ -1,0 +1,72 @@
+#Triggers
+
+CREATE TABLE trigger_test(
+ message VARCHAR(100)
+);
+#Delimiter change doesn't actually works in popsql so have to change this in command line sql
+#Change the delimiter from ; to $$.
+#IN INSERT INTO we write the specific action to be taken when trigger runs
+DELIMITER $$
+CREATE 
+    TRIGGER my_trigger BEFORE INSERT
+    ON employee
+    FOR EACH ROW BEGIN
+        INSERT INTO trigger_test VALUES('added new employee');
+        #Ending the sql command with this delimiter ; Cannot use the same delimiter to end the trigger creation.
+        #If would have not changed the trigger then at this line would have told sql that making trigger is 
+        #done but it's not done yet so have to change the delimiter
+    END$$
+DELIMITER ; #Change the delimiter back to ;
+#Name of the trigger my_trigger sp BEFORE SOMETHING GETS INSERTED IN THE EMPLOYEE TABLE
+#For each of the new items inserted INSERT INTO trigger_test table the value added new employee
+SELECT *
+FROM trigger_test;
+
+INSERT INTO employee VALUES(115,'Shehnaaz','Gill','1965-11-25','F',42000,102,3);
+DELIMITER $$
+    CREATE 
+        TRIGGER my_trigger1 BEFORE INSERT
+        ON employee
+        FOR EACH ROW BEGIN
+            INSERT INTO trigger_test VALUES(NEW.first_name);
+        END$$
+DELIMITER ;
+#Have to change the name of the trigger
+#NEW.first_name helps us access any attribute of the new row getting inserted
+
+#Here we are taking the first_name of the new entry inserted
+
+DELIMITER $$
+    CREATE
+    TRIGGER my_trigger3 BEFORE INSERT
+    ON employee
+    FOR EACH ROW BEGIN
+        IF NEW.sex='M' THEN
+            INSERT INTO trigger_test VALUES('A male employee added');
+        ELSEIF NEW.sex='F' THEN
+            INSERT INTO trigger_test VALUES('A female employee added');
+        ELSE 
+            INSERT INTO trigger_test VALUES('A other employee added');
+        END IF;
+    END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+    CREATE
+    TRIGGER my_trigger3 BEFORE DELETE #can also do AFTER DELETE
+    #AFTER UPDATE
+    ON employee
+    FOR EACH ROW BEGIN
+        IF NEW.sex='M' THEN
+            INSERT INTO trigger_test VALUES('A male employee added');
+        ELSEIF NEW.sex='F' THEN
+            INSERT INTO trigger_test VALUES('A female employee added');
+        ELSE 
+            INSERT INTO trigger_test VALUES('A other employee added');
+        END IF;
+    END$$
+DELIMITER ;
+
+    
