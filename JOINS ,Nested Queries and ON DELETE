@@ -1,0 +1,108 @@
+#Joins
+Select * FROM works_with;
+Describe employee;
+Insert INTO branch VALUES(4,'Buffalo',NULL,NULL);
+
+#Find all branches and names of there managers
+#Can use join as branch has mgr_id which is shared by employee table by emp_id
+#SO can use join to combine rows in two or more tables based on the related column
+SELECT employee.emp_id,employee.first_name,employee.last_name,branch.branch_name
+FROM employee
+JOIN branch
+ON employee.emp_id=branch.mgr_id;
+# ON where emp_id is equal to mgr_id that will be returned and select ke aage jo likha woh woh column aa ajaega
+
+
+#Also can do like same results
+SELECT employee.emp_id,employee.first_name,employee.last_name,branch.branch_name
+FROM branch
+JOIN employee
+ON employee.emp_id=branch.mgr_id;
+
+#4 types of joins
+#Inner join(above example),Left join, Right Join also FULL join
+SELECT employee.emp_id,employee.first_name,employee.last_name,branch.branch_name
+FROM employee
+LEFT JOIN branch
+ON employee.emp_id=branch.mgr_id;
+#Left join Got all of the the employees no matter they are matching the ON condition
+#In left join all the rows from the left table gets included.But only which match in ON gets included from the right table
+#Left is the one which is in the From statement
+
+
+#Right JOin
+SELECT employee.emp_id,employee.first_name,employee.last_name,branch.branch_name
+FROM employee
+RIGHT JOIN branch
+ON employee.emp_id=branch.mgr_id;
+#In Right join all the rows from the right table gets included.But only which match in ON gets included from the left table
+
+
+#NESTED QUERIES-Whenever we need the data from some other table to use in our table.
+
+#First the inner subquery is evaluated by the compiler then the query is evaluated
+
+#Using multiple select statements.Including the result of one select statement into the other
+
+#Find names of all employees who have sold over 30000 dollars to a single client
+
+#So the works with has the sales of a particular employee 
+
+SELECT first_name,last_name
+FROM employee
+WHERE employee.emp_id IN(
+    SELECT works_with.emp_id    
+    FROM works_with
+    WHERE works_with.total_sales>30000
+);
+#Did this in 2 parts first wrote 1 query then the other and then nest them
+# IN as the result got from the subquery will be used in the outer query
+
+
+#Find all clients that are handled by the branch that michael scott manages
+#Assume you know michael sccott's id which is 102
+SELECT client.client_id,client.client_name
+FROM client
+WHERE client.branch_id =(
+    SELECT branch.branch_id
+    FROM branch
+    WHERE branch.mgr_id=102
+    LIMIT 1#There may be a case when one employee is a manager of lot of branches therefore we need just 1 so limit 1
+    #Here = used therefore want 1 value Could have also used IN
+);
+
+
+
+#  ON DELETE
+CREATE TABLE branch (
+  branch_id INT PRIMARY KEY,
+  branch_name VARCHAR(40),
+  mgr_id INT,
+  mgr_start_date DATE,
+  FOREIGN KEY(mgr_id) REFERENCES employee(emp_id) ON DELETE SET NULL
+);
+#Now on deleting the employee from the employee table.If that employee
+#had a mgr_id then the manager id set equal NULL rest row unaffected
+
+DELETE FROM employee WHERE emp_id=106;
+SELECT* FROM branch;
+
+
+CREATE TABLE branch_supplier (
+  branch_id INT,
+  supplier_name VARCHAR(40),
+  supply_type VARCHAR(40),
+  PRIMARY KEY(branch_id, supplier_name),
+  FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE CASCADE
+);
+#Here ON DELETE cascade USED WHEN THE FOREIGN KEY IS ALSO A PART OF PRIMARY KEY AND CANNOT SET THE PRIMARY KEY TO NULL.
+#So now if DELETE branch_id from branch table the whole row with that branch_id from the
+#branch_supplier gets deleted.
+#here branch_id is the foreign key in branch_supplier and is also a primary key in branch_supplier
+#So cannot set this to NULL therefore have to use CASCADE
+
+DELETE FROM branch
+WHERE branch_id=2;
+
+SELECT *
+FROM branch_supplier;
