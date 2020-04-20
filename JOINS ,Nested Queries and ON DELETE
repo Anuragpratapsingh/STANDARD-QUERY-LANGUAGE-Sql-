@@ -1,3 +1,4 @@
+#    WHERE MOD(ID,2)=0 Get even id numbers basically MOD(column_name,2)=0 for even
 #Joins
 Select * FROM works_with;
 Describe employee;
