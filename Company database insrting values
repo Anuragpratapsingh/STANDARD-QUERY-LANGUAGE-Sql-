@@ -1,13 +1,11 @@
-#Filling the corporate Branch.Both employee and branch have forign keys of each other in each other like a circular relationship.As employee has branch_id pointing to specific branch and branch has mgr_id pointing to specific 
+#Filling the corporate Branch.Both employee and branch have forign keys of each other in each other like a circular relationship.As employee has branch_id pointing to specific branch and branch has mgr_id pointing to specific employee 
 SELECT * FROM branch_supplier;
-#Inserted NULL in branch_id which is a foreign in employee table which points to a specific branch and as abhi tak branch table mei branch_id 1 ki values nahi hain.
-#Therefore elements have to be inserted in specific order
-
 
 #RULE IMPORATANT
 #Cannot fill a attribute(row) in column which is a foreign key and it has not been inserted yet.
 
-
+#Inserted NULL in branch_id which is a foreign in employee table which points to a specific branch and as abhi tak branch table mei branch_id 1 ki values nahi hain.
+#Therefore elements have to be inserted in specific order
 INSERT INTO employee VALUES(100,'David','Wallace','1967-11-17','M',250000,NULL,NULL);
 
 INSERT INTO branch VALUES(1,'Corporate',100,'2006-02-09');
