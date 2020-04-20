@@ -1,3 +1,6 @@
+#SELECT DISTINCT CITY
+FROM STATION
+WHERE MOD(ID,2)=0; Getting distinct cities Weather Observation Station 3
 #    WHERE MOD(ID,2)=0 Get even id numbers basically MOD(column_name,2)=0 for even
 #Joins
 Select * FROM works_with;
