@@ -2,7 +2,7 @@
 SELECT * FROM branch_supplier;
 
 #RULE IMPORATANT
-#Cannot fill a attribute(row) in column which is a foreign key and it has not been inserted yet.
+#Cannot fill a attribute(row) in column which is a foreign key and it has not been inserted yet in the parent table.
 
 #Inserted NULL in branch_id which is a foreign in employee table which points to a specific branch and as abhi tak branch table mei branch_id 1 ki values nahi hain.
 #Therefore elements have to be inserted in specific order
