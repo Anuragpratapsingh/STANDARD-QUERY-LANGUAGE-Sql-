@@ -40,6 +40,7 @@ FROM employee;
 SELECT COUNT(sex),sex
 FROM employee
 GROUP BY sex;
+#From group by we get a particular row only once and it gets grouped by what's written and here it is sex.And we group it by COUNT(sex) here
 
 #Find the total sales of each salesman this is in workswith
 SELECT SUM(total_sales),emp_id
