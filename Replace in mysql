@@ -1,0 +1,9 @@
+SELECT CEIL(AVG(SALARY)-AVG(REPLACE(SALARY,0,'')))
+FROM EMPLOYEES;
+#Replacing in all the salary containg zero with null that is removing zeroes and calculating average
+#The blunder problem
+Works with string and integer both
+
+Syntax replace T with M
+SELECT REPLACE('SQL Tutorial', 'T', 'M');
+#The REPLACE() function replaces all occurrences of a substring within a string, with a new substring.
