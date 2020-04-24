@@ -7,3 +7,8 @@ Works with string and integer both
 Syntax replace T with M
 SELECT REPLACE('SQL Tutorial', 'T', 'M');
 #The REPLACE() function replaces all occurrences of a substring within a string, with a new substring.
+
+
+#Truncating the answer to number of decimal places
+SELECT TRUNCATE(135.375, 2);
+This will truncate 135.375 to 2 decimal places can also put values in it.
