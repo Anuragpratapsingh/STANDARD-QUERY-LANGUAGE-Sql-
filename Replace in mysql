@@ -11,4 +11,8 @@ SELECT REPLACE('SQL Tutorial', 'T', 'M');
 
 #Truncating the answer to number of decimal places
 SELECT TRUNCATE(135.375, 2);
-This will truncate 135.375 to 2 decimal places can also put values in it.
+This will truncate 135.375 to 2 decimal places and can also put variables in it.
+
+Or can round
+SELECT ROUND(135.375, 2);
+tHIs will round this off to two decimal places so 135.38 as last value 5 so aage wale par round off
