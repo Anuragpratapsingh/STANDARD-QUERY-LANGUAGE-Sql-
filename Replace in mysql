@@ -16,3 +16,11 @@ This will truncate 135.375 to 2 decimal places and can also put variables in it.
 Or can round
 SELECT ROUND(135.375, 2);
 tHIs will round this off to two decimal places so 135.38 as last value 5 so aage wale par round off
+
+
+
+#Can also do join like
+SELECT SUM(CITY.POPULATION)
+FROM CITY,COUNTRY
+WHERE CITY.COUNTRYCODE=COUNTRY.CODE AND COUNTRY.CONTINENT='ASIA';
+#In from can put both the tables and in where join the foreign key
